@@ -3,10 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="blue">#3F51B5</color>
+    <color name="deepblue">#3F51B5</color>
     <color name="white">#FFFFFF</color>
-    <color name="deepblue">#3F51C6</color>
-    <color name="gray">#eaeaea</color>
+    <color name="deepblue1">#3F51C6</color>
+    <color name="gray">#dad8d8</color>
     <color name="black">#120c0a</color>
-    <color name="zhihublue">#2B6FD5</color>
+    <color name="blue">#2B6FD5</color>
+    <color name="bluewhite">#84bcf0</color>
+    <color name="deepgray">#d1cece</color>
+    <color name="fontblack">#605e5e</color>
+    <color name="red">#fd0101</color>
+    <color name="lowwhite">#e9eded</color>
 </resources>

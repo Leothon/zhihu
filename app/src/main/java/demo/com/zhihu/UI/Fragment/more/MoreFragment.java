@@ -7,17 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 import demo.com.zhihu.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MoreFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MoreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MoreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,8 +31,10 @@ public class MoreFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private List<Map<String, Object>> myData;
 
-    private OnFragmentInteractionListener mListener;
+
+
 
     public MoreFragment() {
         // Required empty public constructor
@@ -65,31 +71,84 @@ public class MoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more, container, false);
+        View view=inflater.inflate(R.layout.fragment_more, container, false);
+
+        ListView morelistView=(ListView)view.findViewById(R.id.more_listview);
+
+        MoreAdapter adapter = new MoreAdapter(getActivity());
+        morelistView.setAdapter(adapter);
+        return view;
+        /*
+        * 还有众多的组件没有添加，需要在写每一个Activity时加上*/
     }
 
+
+    public final class ViewHoldermore{
+        public LinearLayout user_info;
+        public LinearLayout main_info;
+        public LinearLayout other_info;
+        //public Button editButton;
+        //public Button deleteButton;
+    }
+
+    private class MoreAdapter extends BaseAdapter {
+
+        private LayoutInflater mInflater;
+
+        public MoreAdapter(Context context){
+            this.mInflater = LayoutInflater.from(context);
+            //init();
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return 1;
+        }
+
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHoldermore holder;
+            if (convertView == null) {
+                holder=new ViewHoldermore();
+                convertView = mInflater.inflate(R.layout.more_active, null);
+                holder.user_info = (LinearLayout) convertView.findViewById(R.id.user_info);
+                holder.main_info = (LinearLayout) convertView.findViewById(R.id.main_info);
+                holder.other_info = (LinearLayout) convertView.findViewById(R.id.other_info);
+                convertView.setTag(holder);
+            }else {
+                holder = (ViewHoldermore)convertView.getTag();
+            }
+            return convertView;
+        }
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+
     }
 
     /**
@@ -102,8 +161,5 @@ public class MoreFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }

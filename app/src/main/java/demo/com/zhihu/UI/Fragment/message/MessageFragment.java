@@ -7,17 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import demo.com.zhihu.R;
+import demo.com.zhihu.UI.Activity.MainActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MessageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MessageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MessageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +27,10 @@ public class MessageFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+
+
+
+
 
     public MessageFragment() {
         // Required empty public constructor
@@ -65,31 +67,79 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false);
+        View view =inflater.inflate(R.layout.fragment_message, container, false);
+
+        ListView message_listview=(ListView)view.findViewById(R.id.message_listview);
+        messageAdapter adapter=new messageAdapter(getActivity());
+        message_listview.setAdapter(adapter);
+        message_listview.setFadingEdgeLength(0);
+        message_listview.setDividerHeight(0);
+
+        return view;
+    }
+
+    public final class ViewHoldermessage{
+        private ImageView message_usericon;
+        private LinearLayout message_activity;
+    }
+
+
+    public class messageAdapter extends BaseAdapter{
+        private LayoutInflater mInflater;
+
+        public messageAdapter(Context context){
+            this.mInflater = LayoutInflater.from(context);
+
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return 100;//修改
+        }
+
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            ViewHoldermessage holder;
+            if (convertView==null){
+                holder=new ViewHoldermessage();
+                convertView = mInflater.inflate(R.layout.message_active, null);
+                holder.message_usericon=(ImageView)convertView.findViewById(R.id.message_usericon);
+                holder.message_activity=(LinearLayout)convertView.findViewById(R.id.message_activity);
+            }
+
+            return convertView;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+
     }
 
     /**
@@ -102,8 +152,5 @@ public class MessageFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }

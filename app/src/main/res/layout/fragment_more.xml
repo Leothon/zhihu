@@ -1,14 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="demo.com.zhihu.UI.Fragment.more.MoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is more"
-        android:gravity="center"/>
+    <include layout="@layout/more_title"/>
 
-</FrameLayout>
+    <ListView
+        android:layout_marginBottom="120px"
+        android:divider="@color/white"
+        android:id="@+id/more_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+
+
+
+</LinearLayout>

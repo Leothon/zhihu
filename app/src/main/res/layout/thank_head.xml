@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/lowwhite">
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="x条未读"
+            android:textColor="@color/fontblack"
+            android:textSize="18dp"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/markallreaded1"
+            android:layout_marginLeft="550px"
+            android:layout_width="70dp"
+            android:src="@drawable/checkmark"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

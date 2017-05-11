@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="livePager"
+        android:textColor="@color/bluewhite"
+        android:textSize="100px"
+        android:gravity="center"/>
+    <!--<ListView
+        android:id="@+id/live_pager_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>-->
 </LinearLayout>

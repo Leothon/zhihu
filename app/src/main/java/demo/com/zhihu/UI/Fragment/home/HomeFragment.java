@@ -1,6 +1,7 @@
 package demo.com.zhihu.UI.Fragment.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -42,6 +43,7 @@ import java.util.ListIterator;
 
 import demo.com.zhihu.R;
 import demo.com.zhihu.UI.Activity.MainActivity;
+import demo.com.zhihu.UI.Activity.searcherActivity;
 import demo.com.zhihu.UI.Fragment.more.MoreFragment;
 
 
@@ -56,6 +58,9 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private List<newsBean> list;
+
+    private Button research_button;
+    private Button live_button;
 
 
 
@@ -108,7 +113,8 @@ public class HomeFragment extends Fragment {
         homeAdapter adapter=new homeAdapter(getActivity(),list);
         homelistview.setAdapter(adapter);
         homelistview.setDividerHeight(0);
-
+        research_button=(Button)view.findViewById(R.id.research_button);
+        live_button=(Button)view.findViewById(R.id.live_button);
         widgetOnclick();
         return view;
     }
@@ -116,7 +122,20 @@ public class HomeFragment extends Fragment {
 
 
     public void widgetOnclick(){
+        research_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),searcherActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        live_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到liveActivity
+            }
+        });
     }
 
     private List<newsBean> getJsonData(String url)  {

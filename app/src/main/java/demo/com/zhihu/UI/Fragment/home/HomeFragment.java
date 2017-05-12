@@ -15,12 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,6 +65,8 @@ public class HomeFragment extends Fragment {
     private Button live_button;
 
 
+    private int LastPosition=0;
+    private boolean scrollFlag=false;
 
 
 
@@ -116,6 +120,33 @@ public class HomeFragment extends Fragment {
         research_button=(Button)view.findViewById(R.id.research_button);
         live_button=(Button)view.findViewById(R.id.live_button);
         widgetOnclick();
+        homelistview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                switch (i){
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        scrollFlag=false;
+                        LastPosition=absListView.getLastVisiblePosition();
+                        break;
+                    case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+                        scrollFlag=true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int i1, int i2) {
+
+                if (scrollFlag){
+                    if (firstVisibleItem<LastPosition){
+                        Toast.makeText(getActivity(),"上滑",Toast.LENGTH_SHORT).show();
+                    }else if (firstVisibleItem>LastPosition){
+                        Toast.makeText(getActivity(),"下滑",Toast.LENGTH_SHORT).show();
+                    }else
+                        return;
+                }
+            }
+        });
         return view;
     }
 

@@ -126,7 +126,7 @@ public class NoticeFragment extends Fragment {
 
 
         viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),list));
-        viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+        viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
         viewPager.setCurrentItem(0);
         /*FragmentPagerAdapter adapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override

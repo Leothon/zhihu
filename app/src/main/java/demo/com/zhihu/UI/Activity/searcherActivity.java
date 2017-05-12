@@ -56,7 +56,7 @@ public class searcherActivity extends AppCompatActivity implements View.OnClickL
         rearch_zhuanlan.setOnClickListener(this);
         rearch_live.setOnClickListener(this);
 
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
